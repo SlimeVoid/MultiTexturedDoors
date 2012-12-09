@@ -17,6 +17,7 @@ import eurysmods.api.ICommonProxy;
 @Mod(
 		modid = "MultiTexturedDoors",
 		name = "Multi-Textured Doors",
+		dependencies = "after:EurysCore",
 		version = "2.0.0.0")
 @NetworkMod(
 		clientSideRequired = true,
