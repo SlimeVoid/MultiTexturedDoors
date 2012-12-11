@@ -1,8 +1,8 @@
 package mtd.network.packets;
 
-import eurysmods.network.packets.core.PacketTileEntityMT;
 import mtd.core.MTDInit;
 import mtd.tileentities.TileEntityMTDoor;
+import eurysmods.network.packets.core.PacketTileEntityMT;
 
 public class PacketUpdateMTDoor extends PacketTileEntityMT {
 	public PacketUpdateMTDoor() {

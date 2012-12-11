@@ -2,8 +2,6 @@ package mtd.blocks;
 
 import java.util.Random;
 
-import eurysmods.api.IContainer;
-
 import mtd.core.MTDCore;
 import mtd.core.MTDInit;
 import mtd.core.MTDItemDoors;
@@ -17,18 +15,12 @@ import net.minecraft.src.Material;
 import net.minecraft.src.StepSound;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
+import eurysmods.api.IContainer;
 
 public class BlockMTDoor extends BlockDoor implements IContainer {
 	Class mtDoorEntityClass;
 
-	public BlockMTDoor(
-			int par1,
-			Class doorClass,
-			float hardness,
-			StepSound sound,
-			boolean disableStats,
-			boolean requiresSelfNotify,
-			String blockName) {
+	public BlockMTDoor(int par1, Class doorClass, float hardness, StepSound sound, boolean disableStats, boolean requiresSelfNotify, String blockName) {
 		super(par1, Material.rock);
 		this.setBlockName(blockName);
 		this.isBlockContainer = true;
@@ -162,17 +154,18 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 			int doorPiece = ((TileEntityMTDoor) tileentity).getDoorPiece();
 			if (doorPiece == 0) {
 				if (world.getWorldInfo().getGameType() != EnumGameType.CREATIVE) {
-					int door = ((TileEntityMTDoor) tileentity).getTextureValue();
+					int door = ((TileEntityMTDoor) tileentity)
+							.getTextureValue();
 					ItemStack itemstack = MTDItemDoors.getStack(door);
 					EntityItem entityitem = new EntityItem(
 							world,
-							i,
-							j,
-							k,
-							new ItemStack(
-									itemstack.itemID,
-									1,
-									itemstack.getItemDamage()));
+								i,
+								j,
+								k,
+								new ItemStack(
+										itemstack.itemID,
+											1,
+											itemstack.getItemDamage()));
 					world.spawnEntityInWorld(entityitem);
 				}
 			}

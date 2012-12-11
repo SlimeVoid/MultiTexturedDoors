@@ -29,17 +29,15 @@ public class MTDCore {
 
 	public static void addItems() {
 		MTDBlocks.mtDoor.id = configurationProperties();
-		MTDBlocks.mtDoor.me = 
-				(new BlockMTDoor(
+		MTDBlocks.mtDoor.me = (new BlockMTDoor(
 				MTDBlocks.mtDoor.id,
-				TileEntityMTDoor.class,
-				0.5F,
-				Block.soundStoneFootstep,
-				true,
-				true,
-				"mtDoor"));
-		MTDItems.mtdItemDoor.me = 
-				(new ItemMTDoor(
+					TileEntityMTDoor.class,
+					0.5F,
+					Block.soundStoneFootstep,
+					true,
+					true,
+					"mtDoor"));
+		MTDItems.mtdItemDoor.me = (new ItemMTDoor(
 				MTDItems.mtdItemDoor.offsetID())).setItemName("mtItemDoor");
 		GameRegistry.registerTileEntity(TileEntityMTDoor.class, "mtDoor");
 		for (MTDItemDoors door : MTDItemDoors.values()) {
@@ -118,17 +116,15 @@ public class MTDCore {
 
 	public static int configurationProperties() {
 		configuration.load();
-		MTDBlocks.mtDoor.id = Integer.parseInt(configuration
-				.get(
-						Configuration.CATEGORY_BLOCK,
-						"mtDoor",
-						196).value);
+		MTDBlocks.mtDoor.id = Integer.parseInt(configuration.get(
+				Configuration.CATEGORY_BLOCK,
+				"mtDoor",
+				196).value);
 		MTDBlocks.mtDoor.name = "Multi-Textured Door";
-		MTDItems.mtdItemDoor.setID(Integer.parseInt(configuration
-				.get(
-						Configuration.CATEGORY_ITEM,
-						"mtDoorItem",
-						7004).value));
+		MTDItems.mtdItemDoor.setID(Integer.parseInt(configuration.get(
+				Configuration.CATEGORY_ITEM,
+				"mtDoorItem",
+				7004).value));
 		MTDItems.mtdItemDoor.name = "Multi-Textured Door";
 		MTDItemDoors.stoneDoor.name = "Stone Door";
 		MTDItemDoors.stoneDoor.stackID = 0;

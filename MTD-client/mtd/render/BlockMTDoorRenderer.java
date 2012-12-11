@@ -30,22 +30,24 @@ public class BlockMTDoorRenderer implements ISimpleBlockRenderingHandler {
 					x,
 					y,
 					z);
-			tesselator.setBrightness(mtDoor.getBlockBoundsMinY() > 0.0D ? var12 : mtDoor
-					.getMixedBrightnessForBlock(
-							renderblocks.blockAccess,
-							x,
-							y - 1,
-							z));
+			tesselator
+					.setBrightness(mtDoor.getBlockBoundsMinY() > 0.0D ? var12 : mtDoor
+							.getMixedBrightnessForBlock(
+									renderblocks.blockAccess,
+									x,
+									y - 1,
+									z));
 			tesselator.setColorOpaque_F(var8, var8, var8);
 			renderblocks.renderBottomFace(mtDoor, x, y, z, mtDoor
 					.getBlockTexture(renderblocks.blockAccess, x, y, z, 0));
 			var7 = true;
-			tesselator.setBrightness(mtDoor.getBlockBoundsMaxY() < 1.0D ? var12 : mtDoor
-					.getMixedBrightnessForBlock(
-							renderblocks.blockAccess,
-							x,
-							y + 1,
-							z));
+			tesselator
+					.setBrightness(mtDoor.getBlockBoundsMaxY() < 1.0D ? var12 : mtDoor
+							.getMixedBrightnessForBlock(
+									renderblocks.blockAccess,
+									x,
+									y + 1,
+									z));
 			tesselator.setColorOpaque_F(var9, var9, var9);
 			renderblocks.renderTopFace(mtDoor, x, y, z, mtDoor.getBlockTexture(
 					renderblocks.blockAccess,
@@ -54,12 +56,13 @@ public class BlockMTDoorRenderer implements ISimpleBlockRenderingHandler {
 					z,
 					1));
 			var7 = true;
-			tesselator.setBrightness(mtDoor.getBlockBoundsMinZ() > 0.0D ? var12 : mtDoor
-					.getMixedBrightnessForBlock(
-							renderblocks.blockAccess,
-							x,
-							y,
-							z - 1));
+			tesselator
+					.setBrightness(mtDoor.getBlockBoundsMinZ() > 0.0D ? var12 : mtDoor
+							.getMixedBrightnessForBlock(
+									renderblocks.blockAccess,
+									x,
+									y,
+									z - 1));
 			tesselator.setColorOpaque_F(var10, var10, var10);
 			int var13 = mtDoor.getBlockTexture(
 					renderblocks.blockAccess,
@@ -76,12 +79,13 @@ public class BlockMTDoorRenderer implements ISimpleBlockRenderingHandler {
 			renderblocks.renderEastFace(mtDoor, x, y, z, var13);
 			var7 = true;
 			renderblocks.flipTexture = false;
-			tesselator.setBrightness(mtDoor.getBlockBoundsMaxZ() < 1.0D ? var12 : mtDoor
-					.getMixedBrightnessForBlock(
-							renderblocks.blockAccess,
-							x,
-							y,
-							z + 1));
+			tesselator
+					.setBrightness(mtDoor.getBlockBoundsMaxZ() < 1.0D ? var12 : mtDoor
+							.getMixedBrightnessForBlock(
+									renderblocks.blockAccess,
+									x,
+									y,
+									z + 1));
 			tesselator.setColorOpaque_F(var10, var10, var10);
 			var13 = mtDoor
 					.getBlockTexture(renderblocks.blockAccess, x, y, z, 3);
@@ -94,12 +98,13 @@ public class BlockMTDoorRenderer implements ISimpleBlockRenderingHandler {
 			renderblocks.renderWestFace(mtDoor, x, y, z, var13);
 			var7 = true;
 			renderblocks.flipTexture = false;
-			tesselator.setBrightness(mtDoor.getBlockBoundsMinX() > 0.0D ? var12 : mtDoor
-					.getMixedBrightnessForBlock(
-							renderblocks.blockAccess,
-							x - 1,
-							y,
-							z));
+			tesselator
+					.setBrightness(mtDoor.getBlockBoundsMinX() > 0.0D ? var12 : mtDoor
+							.getMixedBrightnessForBlock(
+									renderblocks.blockAccess,
+									x - 1,
+									y,
+									z));
 			tesselator.setColorOpaque_F(var11, var11, var11);
 			var13 = mtDoor
 					.getBlockTexture(renderblocks.blockAccess, x, y, z, 4);
@@ -112,12 +117,13 @@ public class BlockMTDoorRenderer implements ISimpleBlockRenderingHandler {
 			renderblocks.renderNorthFace(mtDoor, x, y, z, var13);
 			var7 = true;
 			renderblocks.flipTexture = false;
-			tesselator.setBrightness(mtDoor.getBlockBoundsMaxX() < 1.0D ? var12 : mtDoor
-					.getMixedBrightnessForBlock(
-							renderblocks.blockAccess,
-							x + 1,
-							y,
-							z));
+			tesselator
+					.setBrightness(mtDoor.getBlockBoundsMaxX() < 1.0D ? var12 : mtDoor
+							.getMixedBrightnessForBlock(
+									renderblocks.blockAccess,
+									x + 1,
+									y,
+									z));
 			tesselator.setColorOpaque_F(var11, var11, var11);
 			var13 = mtDoor
 					.getBlockTexture(renderblocks.blockAccess, x, y, z, 5);

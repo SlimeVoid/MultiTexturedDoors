@@ -2,15 +2,14 @@ package mtd.core;
 
 import java.io.File;
 
-import eurysmods.api.ICommonProxy;
-import eurysmods.api.ICore;
-import eurysmods.core.Core;
-import eurysmods.core.EurysCore;
-
 import mtd.tileentities.TileEntityMTDoor;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.TileEntity;
 import net.minecraftforge.common.Configuration;
+import eurysmods.api.ICommonProxy;
+import eurysmods.api.ICore;
+import eurysmods.core.Core;
+import eurysmods.core.EurysCore;
 
 public class MTDInit {
 	public static ICore MTD;
@@ -25,7 +24,7 @@ public class MTDInit {
 		MTD.setModChannel("MTD");
 		MTDCore.configFile = new File(
 				MTDInit.MTD.getProxy().getMinecraftDir(),
-				"config/MultiTexturedDoors.cfg");
+					"config/MultiTexturedDoors.cfg");
 		MTDCore.configuration = new Configuration(MTDCore.configFile);
 		load();
 	}

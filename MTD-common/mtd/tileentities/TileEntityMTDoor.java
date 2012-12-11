@@ -1,12 +1,12 @@
 package mtd.tileentities;
 
-import eurysmods.network.packets.core.PacketPayload;
-import eurysmods.network.packets.core.PacketUpdate;
-import eurysmods.tileentities.TileEntityMT;
 import mtd.network.packets.PacketUpdateMTDoor;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.Packet;
 import net.minecraft.src.World;
+import eurysmods.network.packets.core.PacketPayload;
+import eurysmods.network.packets.core.PacketUpdate;
+import eurysmods.tileentities.TileEntityMT;
 
 public class TileEntityMTDoor extends TileEntityMT {
 	public int doorPiece;
