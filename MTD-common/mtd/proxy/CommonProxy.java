@@ -79,7 +79,6 @@ public class CommonProxy implements ICommonProxy {
 			int packetID = data.read();
 			switch (packetID) {
 			case PacketIds.TILE:
-				System.out.println("Receiving Packet");
 				PacketUpdateMTDoor packetDoor = new PacketUpdateMTDoor();
 				packetDoor.readData(data);
 				MTDInit.MTD.getPacketHandler().handleTileEntityPacket(

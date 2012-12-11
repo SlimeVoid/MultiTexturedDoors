@@ -12,7 +12,6 @@ public class ClientPacketHandler implements IPacketHandling {
 	@Override
 	public void handleTileEntityPacket(PacketTileEntity packet, EntityPlayer entityplayer, World world) {
 		if (packet != null && packet.targetExists(world)) {
-			System.out.println("Target Exists");
 			TileEntity tileentity = packet.getTileEntity(world);
 			if ((tileentity != null) && (tileentity instanceof TileEntityMTDoor)) {
 				TileEntityMTDoor tileentitymtdoor = (TileEntityMTDoor) tileentity;
