@@ -82,7 +82,7 @@ public class CommonProxy implements ICommonProxy {
 				System.out.println("Receiving Packet");
 				PacketUpdateMTDoor packetDoor = new PacketUpdateMTDoor();
 				packetDoor.readData(data);
-				MTDInit.Core.getPacketHandler().handleTileEntityPacket(
+				MTDInit.MTD.getPacketHandler().handleTileEntityPacket(
 						packetDoor,
 						entityplayer,
 						world);

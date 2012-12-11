@@ -14,7 +14,7 @@ public class MTDConnection implements INetworkConnection {
 
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
-		MTDInit.Core.getProxy().onPacketData(manager, packet, player);
+		MTDInit.MTD.getProxy().onPacketData(manager, packet, player);
 	}
 
 	@Override

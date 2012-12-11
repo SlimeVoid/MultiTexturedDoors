@@ -21,9 +21,16 @@ import net.minecraft.src.World;
 public class BlockMTDoor extends BlockDoor implements IContainer {
 	Class mtDoorEntityClass;
 
-	public BlockMTDoor(int par1, Class doorClass, float hardness, StepSound sound, boolean disableStats, boolean requiresSelfNotify, String blockName) {
+	public BlockMTDoor(
+			int par1,
+			Class doorClass,
+			float hardness,
+			StepSound sound,
+			boolean disableStats,
+			boolean requiresSelfNotify,
+			String blockName) {
 		super(par1, Material.rock);
-		this.setBlockName("mtDoor");
+		this.setBlockName(blockName);
 		this.isBlockContainer = true;
 		this.blockIndexInTexture = 1;
 		mtDoorEntityClass = doorClass;
@@ -137,7 +144,7 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 
 	@Override
 	public int getBlockTextureFromSideAndMetadata(int par1, int par2) {
-		return MTDInit.Core.getProxy().getBlockTextureFromMetadata(par2);
+		return MTDInit.MTD.getProxy().getBlockTextureFromMetadata(par2);
 	}
 
 	/**
@@ -181,6 +188,6 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 
 	@Override
 	public String getTextureFile() {
-		return MTDInit.Core.getBlockSheet();
+		return MTDInit.MTD.getBlockSheet();
 	}
 }

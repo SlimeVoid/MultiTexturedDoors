@@ -6,11 +6,11 @@ import mtd.tileentities.TileEntityMTDoor;
 
 public class PacketUpdateMTDoor extends PacketTileEntityMT {
 	public PacketUpdateMTDoor() {
-		super(MTDInit.Core.getModChannel());
+		super(MTDInit.MTD.getModChannel());
 	}
 
 	public PacketUpdateMTDoor(TileEntityMTDoor tileentitymtdoor) {
-		super(MTDInit.Core.getModChannel(), tileentitymtdoor);
+		super(MTDInit.MTD.getModChannel(), tileentitymtdoor);
 		this.payload = tileentitymtdoor.getPacketPayload();
 	}
 

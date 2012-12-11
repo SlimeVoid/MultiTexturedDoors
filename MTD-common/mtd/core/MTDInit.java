@@ -13,32 +13,32 @@ import net.minecraft.src.TileEntity;
 import net.minecraftforge.common.Configuration;
 
 public class MTDInit {
-	public static ICore Core;
+	public static ICore MTD;
 	private static boolean initialized = false;
 
 	public static void initialize(ICommonProxy proxy) {
 		if (initialized)
 			return;
 		initialized = true;
-		Core = new Core(proxy);
-		Core.setModName("MultiTexturedDoors");
-		Core.setModChannel("MTD");
+		MTD = new Core(proxy);
+		MTD.setModName("MultiTexturedDoors");
+		MTD.setModChannel("MTD");
 		MTDCore.configFile = new File(
-				MTDInit.Core.getProxy().getMinecraftDir(),
+				MTDInit.MTD.getProxy().getMinecraftDir(),
 				"config/MultiTexturedDoors.cfg");
 		MTDCore.configuration = new Configuration(MTDCore.configFile);
 		load();
 	}
 
 	public static void load() {
-		EurysCore.console(Core.getModName(), "Registering items...");
+		EurysCore.console(MTD.getModName(), "Registering items...");
 		MTDCore.addItems();
-		EurysCore.console(Core.getModName(), "Registering blocks...");
+		EurysCore.console(MTD.getModName(), "Registering blocks...");
 		MTDCore.registerBlocks();
-		Core.getProxy().registerRenderInformation();
-		EurysCore.console(Core.getModName(), "Naming items...");
+		MTD.getProxy().registerRenderInformation();
+		EurysCore.console(MTD.getModName(), "Naming items...");
 		MTDCore.addItemNames();
-		EurysCore.console(Core.getModName(), "Registering recipes...");
+		EurysCore.console(MTD.getModName(), "Registering recipes...");
 		MTDCore.addRecipes();
 	}
 

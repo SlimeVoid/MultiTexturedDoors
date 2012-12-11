@@ -163,6 +163,6 @@ public class ItemMTDoor extends Item {
 
 	@Override
 	public String getTextureFile() {
-		return MTDInit.Core.getItemSheet();
+		return MTDInit.MTD.getItemSheet();
 	}
 }

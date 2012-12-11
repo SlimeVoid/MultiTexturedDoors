@@ -23,8 +23,8 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerRenderInformation() {
-		MinecraftForgeClient.preloadTexture(MTDInit.Core.getBlockSheet());
-		MinecraftForgeClient.preloadTexture(MTDInit.Core.getItemSheet());
+		MinecraftForgeClient.preloadTexture(MTDInit.MTD.getBlockSheet());
+		MinecraftForgeClient.preloadTexture(MTDInit.MTD.getItemSheet());
 		MTDCore.mtDoorRenderID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new BlockMTDoorRenderer());
 	}
