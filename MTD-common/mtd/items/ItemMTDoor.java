@@ -61,8 +61,8 @@ public class ItemMTDoor extends Item {
 			return false;
 		} else {
 			++j;
-			if (entityplayer.func_82247_a(i, j, k, l, itemstack) && entityplayer
-					.func_82247_a(i, j + 1, k, l, itemstack)) {
+			if (entityplayer.canPlayerEdit(i, j, k, l, itemstack) && entityplayer
+					.canPlayerEdit(i, j + 1, k, l, itemstack)) {
 				if (mtDoor.canPlaceBlockAt(world, i, j, k)) {
 					int var10 = MathHelper
 							.floor_double(((entityplayer.rotationYaw + 180.0F) * 4.0F / 360.0F) - 0.5D) & 3;
