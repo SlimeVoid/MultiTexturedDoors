@@ -3,10 +3,10 @@ package mtd.render;
 import mtd.blocks.BlockMTDoor;
 import mtd.core.MTDBlocks;
 import mtd.core.MTDCore;
-import net.minecraft.src.Block;
-import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.RenderBlocks;
-import net.minecraft.src.Tessellator;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockMTDoorRenderer implements ISimpleBlockRenderingHandler {

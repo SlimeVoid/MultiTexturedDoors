@@ -6,15 +6,15 @@ import mtd.core.MTDCore;
 import mtd.core.MTDInit;
 import mtd.core.MTDItemDoors;
 import mtd.tileentities.TileEntityMTDoor;
-import net.minecraft.src.BlockDoor;
-import net.minecraft.src.EntityItem;
-import net.minecraft.src.EnumGameType;
-import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
-import net.minecraft.src.StepSound;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.World;
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.StepSound;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.EnumGameType;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import eurysmods.api.IContainer;
 
 public class BlockMTDoor extends BlockDoor implements IContainer {
@@ -78,6 +78,7 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 	 * Retrieves the block texture to use based on the display side. Args:
 	 * iBlockAccess, x, y, z, side
 	 */
+	@Override
 	public int getBlockTexture(IBlockAccess par1IBlockAccess, int x, int y, int z, int side) {
 		int index = this.blockIndexInTexture;
 		int staticIndex = index;

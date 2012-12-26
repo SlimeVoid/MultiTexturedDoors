@@ -3,13 +3,13 @@ package mtd.items;
 import mtd.core.MTDBlocks;
 import mtd.core.MTDInit;
 import mtd.tileentities.TileEntityMTDoor;
-import net.minecraft.src.Block;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.MathHelper;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.World;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 public class ItemMTDoor extends Item {
 	private String[] doorNames = new String[] { "Iron", "Gold", "Diamond" };
@@ -47,6 +47,7 @@ public class ItemMTDoor extends Item {
 	/**
 	 * Gets an icon index based on an item's damage value
 	 */
+	@Override
 	public int getIconFromDamage(int par1) {
 		return par1;
 	}

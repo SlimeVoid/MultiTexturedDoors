@@ -1,9 +1,9 @@
 package mtd.tileentities;
 
 import mtd.network.packets.PacketUpdateMTDoor;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.Packet;
-import net.minecraft.src.World;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.world.World;
 import eurysmods.network.packets.core.PacketPayload;
 import eurysmods.network.packets.core.PacketUpdate;
 import eurysmods.tileentities.TileEntityMT;
@@ -32,9 +32,8 @@ public class TileEntityMTDoor extends TileEntityMT {
 	}
 
 	public PacketPayload getPacketPayload() {
-		PacketPayload p = new PacketPayload(2, 0, 0, 0);
-		p.setIntPayload(0, this.getTextureValue());
-		p.setIntPayload(1, this.getDoorPiece());
+		PacketPayload p = new PacketPayload(1, 0, 0, 0);
+		p.setIntPayload(0, this.getDoorPiece());
 		return p;
 	}
 

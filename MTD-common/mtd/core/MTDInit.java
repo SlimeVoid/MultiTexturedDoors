@@ -3,8 +3,8 @@ package mtd.core;
 import java.io.File;
 
 import mtd.tileentities.TileEntityMTDoor;
-import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.TileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.Configuration;
 import eurysmods.api.ICommonProxy;
 import eurysmods.api.ICore;

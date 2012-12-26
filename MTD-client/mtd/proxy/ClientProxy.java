@@ -5,13 +5,13 @@ import mtd.core.MTDInit;
 import mtd.network.ClientPacketHandler;
 import mtd.render.BlockMTDoorRenderer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.ModLoader;
-import net.minecraft.src.TileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import eurysmods.api.IPacketHandling;
 
 public class ClientProxy extends CommonProxy {

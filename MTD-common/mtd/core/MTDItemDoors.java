@@ -1,6 +1,6 @@
 package mtd.core;
 
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
 
 public enum MTDItemDoors {
 	stoneDoor, goldDoor, diamondDoor;
