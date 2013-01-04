@@ -1,7 +1,7 @@
-package mtd.network.packets;
+package eurymachus.mtd.network.packets;
 
-import mtd.core.MTDInit;
-import mtd.tileentities.TileEntityMTDoor;
+import eurymachus.mtd.core.MTDInit;
+import eurymachus.mtd.tileentities.TileEntityMTDoor;
 import eurysmods.network.packets.core.PacketTileEntityMT;
 
 public class PacketUpdateMTDoor extends PacketTileEntityMT {

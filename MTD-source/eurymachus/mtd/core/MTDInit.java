@@ -1,15 +1,18 @@
-package mtd.core;
+package eurymachus.mtd.core;
 
 import java.io.File;
 
-import mtd.tileentities.TileEntityMTDoor;
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.Configuration;
+import eurymachus.mtd.tileentities.TileEntityMTDoor;
 import eurysmods.api.ICommonProxy;
 import eurysmods.api.ICore;
+import eurysmods.core.BlockRemover;
 import eurysmods.core.Core;
 import eurysmods.core.EurysCore;
+import eurysmods.core.RecipeRemover;
 
 public class MTDInit {
 	public static ICore MTD;
@@ -30,6 +33,14 @@ public class MTDInit {
 	}
 
 	public static void load() {
+		MTDCore.configurationProperties();
+		EurysCore.console(MTD.getModName(), "Removing Recipes...");
+		RecipeRemover.registerItemRecipeToRemove(Block.doorWood);
+		RecipeRemover.registerItemRecipeToRemove(Block.doorSteel);
+		RecipeRemover.removeCrafting();
+		EurysCore.console(MTD.getModName(), "Removing Blocks...");
+		BlockRemover.removeVanillaBlock(Block.doorWood);
+		BlockRemover.removeVanillaBlock(Block.doorSteel);
 		EurysCore.console(MTD.getModName(), "Registering items...");
 		MTDCore.addItems();
 		EurysCore.console(MTD.getModName(), "Registering blocks...");

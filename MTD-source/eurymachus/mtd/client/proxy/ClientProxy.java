@@ -1,9 +1,5 @@
-package mtd.proxy;
+package eurymachus.mtd.client.proxy;
 
-import mtd.core.MTDCore;
-import mtd.core.MTDInit;
-import mtd.network.ClientPacketHandler;
-import mtd.render.BlockMTDoorRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.ModLoader;
@@ -12,6 +8,11 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import eurymachus.mtd.client.network.ClientPacketHandler;
+import eurymachus.mtd.client.render.BlockMTDoorRenderer;
+import eurymachus.mtd.core.MTDCore;
+import eurymachus.mtd.core.MTDInit;
+import eurymachus.mtd.proxy.CommonProxy;
 import eurysmods.api.IPacketHandling;
 
 public class ClientProxy extends CommonProxy {

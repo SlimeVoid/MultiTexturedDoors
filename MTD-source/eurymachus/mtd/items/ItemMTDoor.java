@@ -1,9 +1,15 @@
-package mtd.items;
+package eurymachus.mtd.items;
 
-import mtd.core.MTDBlocks;
-import mtd.core.MTDInit;
-import mtd.tileentities.TileEntityMTDoor;
+import java.util.List;
+
+import eurymachus.mtd.core.MTDBlocks;
+import eurymachus.mtd.core.MTDInit;
+import eurymachus.mtd.core.MTDItemDoors;
+import eurymachus.mtd.core.MTDItemSensibleDoors;
+import eurymachus.mtd.core.MTDItems;
+import eurymachus.mtd.tileentities.TileEntityMTDoor;
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,10 +18,17 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class ItemMTDoor extends Item {
-	private String[] doorNames = new String[] { "Iron", "Gold", "Diamond" };
+	private String[] doorNames;
+	private final Block blockRef;
 
-	public ItemMTDoor(int i) {
+	public ItemMTDoor(int i, Block blockRef) {
 		super(i);
+		if (blockRef.blockID == MTDBlocks.mtDoor.id) {
+			this.doorNames = MTDItemDoors.getDoorNames();
+		} else {
+			this.doorNames = MTDItemSensibleDoors.getDoorNames();
+		}
+		this.blockRef = blockRef;
 		this.maxStackSize = 1;
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
@@ -48,13 +61,12 @@ public class ItemMTDoor extends Item {
 	 * Gets an icon index based on an item's damage value
 	 */
 	@Override
-	public int getIconFromDamage(int par1) {
-		return par1;
+	public int getIconFromDamage(int damage) {
+		return this.blockRef.getBlockTextureFromSideAndMetadata(0, damage);
 	}
 
 	@Override
 	public boolean onItemUse(ItemStack itemstack, EntityPlayer entityplayer, World world, int i, int j, int k, int l, float a, float b, float c) {
-		Block mtDoor = MTDBlocks.mtDoor.me;
 		if (l != 1) {
 			return false;
 		}
@@ -64,7 +76,7 @@ public class ItemMTDoor extends Item {
 			++j;
 			if (entityplayer.canPlayerEdit(i, j, k, l, itemstack) && entityplayer
 					.canPlayerEdit(i, j + 1, k, l, itemstack)) {
-				if (mtDoor.canPlaceBlockAt(world, i, j, k)) {
+				if (blockRef.canPlaceBlockAt(world, i, j, k)) {
 					int var10 = MathHelper
 							.floor_double(((entityplayer.rotationYaw + 180.0F) * 4.0F / 360.0F) - 0.5D) & 3;
 					placeDoorBlock(
@@ -73,7 +85,7 @@ public class ItemMTDoor extends Item {
 							j,
 							k,
 							var10,
-							mtDoor,
+							blockRef,
 							itemstack.getItemDamage());
 					--itemstack.stackSize;
 					return true;
@@ -166,4 +178,17 @@ public class ItemMTDoor extends Item {
 	public String getTextureFile() {
 		return MTDInit.MTD.getItemSheet();
 	}
+	
+	@Override
+    public void getSubItems(int itemID, CreativeTabs creativeTabs, List list) {
+		if (itemID == MTDItems.mtdItemDoor.getID()) {
+			for (MTDItemDoors door : MTDItemDoors.values()) {
+		        list.add(new ItemStack(itemID, 1, door.stackID));	
+			}	
+		} else {
+			for (MTDItemSensibleDoors door : MTDItemSensibleDoors.values()) {
+		        list.add(new ItemStack(itemID, 1, door.stackID));	
+			}
+		}
+    }
 }

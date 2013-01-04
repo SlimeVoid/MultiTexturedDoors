@@ -1,9 +1,9 @@
-package mtd.core;
+package eurymachus.mtd.core;
 
 import net.minecraft.item.Item;
 
 public enum MTDItems {
-	mtdItemDoor;
+	mtdItemDoor, mtdItemSensibleDoor;
 
 	public Item me;
 	private int id;

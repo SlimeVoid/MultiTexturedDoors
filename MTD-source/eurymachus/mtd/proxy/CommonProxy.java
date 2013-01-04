@@ -1,11 +1,8 @@
-package mtd.proxy;
+package eurymachus.mtd.proxy;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
-import mtd.core.MTDInit;
-import mtd.network.ServerPacketHandler;
-import mtd.network.packets.PacketUpdateMTDoor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.NetHandler;
@@ -14,6 +11,9 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.Player;
+import eurymachus.mtd.core.MTDInit;
+import eurymachus.mtd.network.ServerPacketHandler;
+import eurymachus.mtd.network.packets.PacketUpdateMTDoor;
 import eurysmods.api.ICommonProxy;
 import eurysmods.api.IPacketHandling;
 import eurysmods.network.packets.core.PacketIds;

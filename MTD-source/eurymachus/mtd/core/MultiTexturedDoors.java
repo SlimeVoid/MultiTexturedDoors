@@ -1,6 +1,5 @@
-package mtd.core;
+package eurymachus.mtd.core;
 
-import mtd.network.MTDConnection;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -10,6 +9,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import eurymachus.mtd.network.MTDConnection;
 import eurysmods.api.ICommonProxy;
 
 @Mod(
@@ -25,21 +25,20 @@ import eurysmods.api.ICommonProxy;
 		connectionHandler = MTDConnection.class)
 public class MultiTexturedDoors {
 	@SidedProxy(
-			clientSide = "mtd.proxy.ClientProxy",
-			serverSide = "mtd.proxy.CommonProxy")
+			clientSide = "eurymachus.mtd.client.proxy.ClientProxy",
+			serverSide = "eurymachus.mtd.proxy.CommonProxy")
 	public static ICommonProxy proxy;
-
-	@Init
-	public void MultiTexturedDoorsInit(FMLInitializationEvent event) {
-	}
 
 	@PreInit
 	public void MultiTexturedDoorsPreInit(FMLPreInitializationEvent event) {
+	}
 
+	@Init
+	public void MultiTexturedDoorsInit(FMLInitializationEvent event) {
+		MTDCore.initialize(proxy);
 	}
 
 	@PostInit
 	public void MultiTexturedDoorsPostInit(FMLPostInitializationEvent event) {
-		MTDCore.initialize(proxy);
 	}
 }

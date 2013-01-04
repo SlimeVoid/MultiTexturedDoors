@@ -1,11 +1,7 @@
-package mtd.blocks;
+package eurymachus.mtd.blocks;
 
 import java.util.Random;
 
-import mtd.core.MTDCore;
-import mtd.core.MTDInit;
-import mtd.core.MTDItemDoors;
-import mtd.tileentities.TileEntityMTDoor;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.StepSound;
 import net.minecraft.block.material.Material;
@@ -15,13 +11,19 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.EnumGameType;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import eurymachus.mtd.core.MTDBlocks;
+import eurymachus.mtd.core.MTDCore;
+import eurymachus.mtd.core.MTDInit;
+import eurymachus.mtd.core.MTDItemDoors;
+import eurymachus.mtd.core.MTDItemSensibleDoors;
+import eurymachus.mtd.tileentities.TileEntityMTDoor;
 import eurysmods.api.IContainer;
 
 public class BlockMTDoor extends BlockDoor implements IContainer {
 	Class mtDoorEntityClass;
 
-	public BlockMTDoor(int par1, Class doorClass, float hardness, StepSound sound, boolean disableStats, boolean requiresSelfNotify, String blockName) {
-		super(par1, Material.rock);
+	public BlockMTDoor(int par1, Class doorClass, float hardness, StepSound sound, boolean disableStats, boolean requiresSelfNotify, String blockName, Material material) {
+		super(par1, material);
 		this.setBlockName(blockName);
 		this.isBlockContainer = true;
 		this.blockIndexInTexture = 1;
@@ -34,15 +36,6 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 		if (requiresSelfNotify) {
 			setRequiresSelfNotify();
 		}
-		float var3 = 0.5F;
-		float var4 = 1.0F;
-		this.setBlockBounds(
-				0.5F - var3,
-				0.0F,
-				0.5F - var3,
-				0.5F + var3,
-				var4,
-				0.5F + var3);
 	}
 
 	@Override
@@ -79,53 +72,54 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 	 * iBlockAccess, x, y, z, side
 	 */
 	@Override
-	public int getBlockTexture(IBlockAccess par1IBlockAccess, int x, int y, int z, int side) {
+	public int getBlockTexture(IBlockAccess blockaccess, int x, int y, int z, int side) {
 		int index = this.blockIndexInTexture;
 		int staticIndex = index;
-		switch (MTDInit.getDamageValue(par1IBlockAccess, x, y, z)) {
-		case 0:
-			index = 17;
-			staticIndex = 17;
-			break;
-		case 1:
-			index = 18;
-			staticIndex = 18;
-			break;
-		case 2:
-			index = 19;
-			staticIndex = 19;
-			break;
+		if (blockaccess.getBlockId(x, y, z) == MTDBlocks.mtDoor.id) {
+			index = MTDItemDoors.getTexture(MTDInit.getDamageValue(
+					blockaccess,
+					x,
+					y,
+					z));
+			staticIndex = index;
+		} else {
+			index = MTDItemSensibleDoors.getTexture(MTDInit.getDamageValue(
+					blockaccess,
+					x,
+					y,
+					z));
+			staticIndex = index;
 		}
 		if (side != 0 && side != 1) {
-			int fullMeta = this.getFullMetadata(par1IBlockAccess, x, y, z);
+			int fullMeta = this.getFullMetadata(blockaccess, x, y, z);
 			if ((fullMeta & 8) != 0) {
 				index -= 16;
 			}
 
-			int var8 = fullMeta & 3;
-			boolean var9 = (fullMeta & 4) != 0;
+			int doorSide = fullMeta & 3;
+			boolean state = (fullMeta & 4) != 0;
 
-			if (!var9) {
-				if (var8 == 0 && side == 5) {
+			if (!state) {
+				if (doorSide == 0 && side == 5) {
 					index = -index;
-				} else if (var8 == 1 && side == 3) {
+				} else if (doorSide == 1 && side == 3) {
 					index = -index;
-				} else if (var8 == 2 && side == 4) {
+				} else if (doorSide == 2 && side == 4) {
 					index = -index;
-				} else if (var8 == 3 && side == 2) {
+				} else if (doorSide == 3 && side == 2) {
 					index = -index;
 				}
 
 				if ((fullMeta & 16) != 0) {
 					index = -index;
 				}
-			} else if (var8 == 0 && side == 2) {
+			} else if (doorSide == 0 && side == 2) {
 				index = -index;
-			} else if (var8 == 1 && side == 5) {
+			} else if (doorSide == 1 && side == 5) {
 				index = -index;
-			} else if (var8 == 2 && side == 3) {
+			} else if (doorSide == 2 && side == 3) {
 				index = -index;
-			} else if (var8 == 3 && side == 4) {
+			} else if (doorSide == 3 && side == 4) {
 				index = -index;
 			}
 
