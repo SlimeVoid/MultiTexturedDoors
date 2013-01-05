@@ -6,6 +6,7 @@ import net.minecraft.block.BlockDoor;
 import net.minecraft.block.StepSound;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.EnumGameType;
@@ -35,6 +36,35 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 		}
 		if (requiresSelfNotify) {
 			setRequiresSelfNotify();
+		}
+	}
+	
+	@Override
+	public void breakBlock(World world, int x, int y, int z, int side, int metadata) {
+		TileEntity tileentity = world.getBlockTileEntity(x, y, z);
+		if (tileentity != null && tileentity instanceof TileEntityMTDoor) {
+			int id = ((TileEntityMTDoor) tileentity)
+					.getTextureValue();
+			int piece =((TileEntityMTDoor) tileentity)
+					.getDoorPiece(); 
+			if (piece == 0) {
+				ItemStack itemstack;
+				if (this.blockID == MTDBlocks.mtDoor.id) {
+					itemstack = MTDItemDoors.getStack(id);
+				} else {
+					itemstack = MTDItemSensibleDoors.getStack(id);
+				}
+				EntityItem entityitem = new EntityItem(
+						world,
+							x,
+							y,
+							z,
+							new ItemStack(
+									itemstack.itemID,
+										1,
+										itemstack.getItemDamage()));
+				world.spawnEntityInWorld(entityitem);
+			}
 		}
 	}
 
@@ -130,8 +160,8 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 	}
 
 	@Override
-	public int getBlockTextureFromSideAndMetadata(int par1, int par2) {
-		return MTDInit.MTD.getProxy().getBlockTextureFromMetadata(par2);
+	public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+		return MTDInit.MTD.getProxy().getBlockTextureFromMetadata(metadata);
 	}
 
 	/**
@@ -140,33 +170,6 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 	@Override
 	public int getRenderType() {
 		return MTDCore.mtDoorRenderID;
-	}
-
-	@Override
-	public void breakBlock(World world, int i, int j, int k, int a, int b) {
-		TileEntity tileentity = world.getBlockTileEntity(i, j, k);
-		if (tileentity != null && tileentity instanceof TileEntityMTDoor) {
-			int doorPiece = ((TileEntityMTDoor) tileentity).getDoorPiece();
-			if (doorPiece == 0) {
-				if (world.getWorldInfo().getGameType() != EnumGameType.CREATIVE) {
-					int door = ((TileEntityMTDoor) tileentity)
-							.getTextureValue();
-					ItemStack itemstack = MTDItemDoors.getStack(door);
-					EntityItem entityitem = new EntityItem(
-							world,
-								i,
-								j,
-								k,
-								new ItemStack(
-										itemstack.itemID,
-											1,
-											itemstack.getItemDamage()));
-					world.spawnEntityInWorld(entityitem);
-				}
-			}
-			super.breakBlock(world, i, j, k, a, b);
-			world.removeBlockTileEntity(i, j, k);
-		}
 	}
 
 	@Override

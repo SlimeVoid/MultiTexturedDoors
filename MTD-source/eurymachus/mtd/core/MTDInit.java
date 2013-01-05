@@ -3,6 +3,7 @@ package eurymachus.mtd.core;
 import java.io.File;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.Configuration;
@@ -12,6 +13,7 @@ import eurysmods.api.ICore;
 import eurysmods.core.BlockRemover;
 import eurysmods.core.Core;
 import eurysmods.core.EurysCore;
+import eurysmods.core.ItemRemover;
 import eurysmods.core.RecipeRemover;
 
 public class MTDInit {
@@ -41,6 +43,9 @@ public class MTDInit {
 		EurysCore.console(MTD.getModName(), "Removing Blocks...");
 		BlockRemover.removeVanillaBlock(Block.doorWood);
 		BlockRemover.removeVanillaBlock(Block.doorSteel);
+		EurysCore.console(MTD.getModName(), "Removing Items...");
+		ItemRemover.removeVanillaItem(Item.doorWood);
+		ItemRemover.removeVanillaItem(Item.doorSteel);
 		EurysCore.console(MTD.getModName(), "Registering items...");
 		MTDCore.addItems();
 		EurysCore.console(MTD.getModName(), "Registering blocks...");

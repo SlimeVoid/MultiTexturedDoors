@@ -12,17 +12,18 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class ItemMTDoor extends Item {
+public class ItemMTDoor extends ItemDoor {
 	private String[] doorNames;
 	private final Block blockRef;
 
 	public ItemMTDoor(int i, Block blockRef) {
-		super(i);
+		super(i, blockRef.blockMaterial);
 		if (blockRef.blockID == MTDBlocks.mtDoor.id) {
 			this.doorNames = MTDItemDoors.getDoorNames();
 		} else {
@@ -62,7 +63,11 @@ public class ItemMTDoor extends Item {
 	 */
 	@Override
 	public int getIconFromDamage(int damage) {
-		return this.blockRef.getBlockTextureFromSideAndMetadata(0, damage);
+		if (this.blockRef.blockID == MTDBlocks.mtDoor.id) {
+			return damage;
+		} else {
+			return damage + 32;
+		}
 	}
 
 	@Override

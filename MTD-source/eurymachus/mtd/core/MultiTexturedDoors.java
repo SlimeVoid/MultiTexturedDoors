@@ -35,10 +35,10 @@ public class MultiTexturedDoors {
 
 	@Init
 	public void MultiTexturedDoorsInit(FMLInitializationEvent event) {
-		MTDCore.initialize(proxy);
 	}
 
 	@PostInit
 	public void MultiTexturedDoorsPostInit(FMLPostInitializationEvent event) {
+		MTDCore.initialize(proxy);
 	}
 }
