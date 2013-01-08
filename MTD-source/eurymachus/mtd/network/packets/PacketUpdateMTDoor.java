@@ -1,8 +1,8 @@
 package eurymachus.mtd.network.packets;
 
+import slimevoid.lib.network.PacketTileEntityMT;
 import eurymachus.mtd.core.MTDInit;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
-import eurysmods.network.packets.core.PacketTileEntityMT;
 
 public class PacketUpdateMTDoor extends PacketTileEntityMT {
 	public PacketUpdateMTDoor() {

@@ -2,6 +2,8 @@ package eurymachus.mtd.core;
 
 import java.io.File;
 
+import slimevoid.lib.ICommonProxy;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -13,7 +15,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import eurymachus.mtd.blocks.BlockMTDoor;
 import eurymachus.mtd.items.ItemMTDoor;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
-import eurysmods.api.ICommonProxy;
 
 public class MTDCore {
 	public static File configFile;

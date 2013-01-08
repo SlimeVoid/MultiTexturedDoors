@@ -2,6 +2,8 @@ package eurymachus.mtd.blocks;
 
 import java.util.Random;
 
+import slimevoid.lib.IContainer;
+
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.StepSound;
 import net.minecraft.block.material.Material;
@@ -18,7 +20,6 @@ import eurymachus.mtd.core.MTDInit;
 import eurymachus.mtd.core.MTDItemDoors;
 import eurymachus.mtd.core.MTDItemSensibleDoors;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
-import eurysmods.api.IContainer;
 
 public class BlockMTDoor extends BlockDoor implements IContainer {
 	Class mtDoorEntityClass;

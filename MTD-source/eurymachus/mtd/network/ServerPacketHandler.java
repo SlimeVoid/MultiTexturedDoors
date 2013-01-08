@@ -1,12 +1,12 @@
 package eurymachus.mtd.network;
 
+import slimevoid.lib.IPacketHandling;
+import slimevoid.lib.network.PacketTileEntity;
+import slimevoid.lib.network.PacketUpdate;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
-import eurysmods.api.IPacketHandling;
-import eurysmods.network.packets.core.PacketTileEntity;
-import eurysmods.network.packets.core.PacketUpdate;
 
 public class ServerPacketHandler implements IPacketHandling {
 	@Override

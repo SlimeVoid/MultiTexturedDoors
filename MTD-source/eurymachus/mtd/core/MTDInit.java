@@ -2,19 +2,20 @@ package eurymachus.mtd.core;
 
 import java.io.File;
 
+import slimevoid.lib.ICommonProxy;
+import slimevoid.lib.ICore;
+import slimevoid.lib.core.BlockRemover;
+import slimevoid.lib.core.Core;
+import slimevoid.lib.core.SlimevoidCore;
+import slimevoid.lib.core.ItemRemover;
+import slimevoid.lib.core.RecipeRemover;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.Configuration;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
-import eurysmods.api.ICommonProxy;
-import eurysmods.api.ICore;
-import eurysmods.core.BlockRemover;
-import eurysmods.core.Core;
-import eurysmods.core.EurysCore;
-import eurysmods.core.ItemRemover;
-import eurysmods.core.RecipeRemover;
 
 public class MTDInit {
 	public static ICore MTD;
@@ -36,24 +37,24 @@ public class MTDInit {
 
 	public static void load() {
 		MTDCore.configurationProperties();
-		EurysCore.console(MTD.getModName(), "Removing Recipes...");
+		SlimevoidCore.console(MTD.getModName(), "Removing Recipes...");
 		RecipeRemover.registerItemRecipeToRemove(Block.doorWood);
 		RecipeRemover.registerItemRecipeToRemove(Block.doorSteel);
 		RecipeRemover.removeCrafting();
-		EurysCore.console(MTD.getModName(), "Removing Blocks...");
+		SlimevoidCore.console(MTD.getModName(), "Removing Blocks...");
 		BlockRemover.removeVanillaBlock(Block.doorWood);
 		BlockRemover.removeVanillaBlock(Block.doorSteel);
-		EurysCore.console(MTD.getModName(), "Removing Items...");
+		SlimevoidCore.console(MTD.getModName(), "Removing Items...");
 		ItemRemover.removeVanillaItem(Item.doorWood);
 		ItemRemover.removeVanillaItem(Item.doorSteel);
-		EurysCore.console(MTD.getModName(), "Registering items...");
+		SlimevoidCore.console(MTD.getModName(), "Registering items...");
 		MTDCore.addItems();
-		EurysCore.console(MTD.getModName(), "Registering blocks...");
+		SlimevoidCore.console(MTD.getModName(), "Registering blocks...");
 		MTDCore.registerBlocks();
 		MTD.getProxy().registerRenderInformation();
-		EurysCore.console(MTD.getModName(), "Naming items...");
+		SlimevoidCore.console(MTD.getModName(), "Naming items...");
 		MTDCore.addItemNames();
-		EurysCore.console(MTD.getModName(), "Registering recipes...");
+		SlimevoidCore.console(MTD.getModName(), "Registering recipes...");
 		MTDCore.addRecipes();
 	}
 

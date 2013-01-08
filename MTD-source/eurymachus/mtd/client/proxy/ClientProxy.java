@@ -1,5 +1,6 @@
 package eurymachus.mtd.client.proxy;
 
+import slimevoid.lib.IPacketHandling;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.ModLoader;
@@ -13,7 +14,6 @@ import eurymachus.mtd.client.render.BlockMTDoorRenderer;
 import eurymachus.mtd.core.MTDCore;
 import eurymachus.mtd.core.MTDInit;
 import eurymachus.mtd.proxy.CommonProxy;
-import eurysmods.api.IPacketHandling;
 
 public class ClientProxy extends CommonProxy {
 

@@ -3,6 +3,10 @@ package eurymachus.mtd.proxy;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
+import slimevoid.lib.ICommonProxy;
+import slimevoid.lib.IPacketHandling;
+import slimevoid.lib.network.PacketIds;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.NetHandler;
@@ -14,9 +18,6 @@ import cpw.mods.fml.common.network.Player;
 import eurymachus.mtd.core.MTDInit;
 import eurymachus.mtd.network.ServerPacketHandler;
 import eurymachus.mtd.network.packets.PacketUpdateMTDoor;
-import eurysmods.api.ICommonProxy;
-import eurysmods.api.IPacketHandling;
-import eurysmods.network.packets.core.PacketIds;
 
 public class CommonProxy implements ICommonProxy {
 
