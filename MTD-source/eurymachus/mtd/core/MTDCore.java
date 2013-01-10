@@ -273,12 +273,12 @@ public class MTDCore {
 		MTDItems.mtdItemDoor.setID(Integer.parseInt(configuration.get(
 				Configuration.CATEGORY_ITEM,
 				"mtDoorItem",
-				Item.doorSteel.shiftedIndex).value));
+				Item.doorSteel.itemID).value));
 		MTDItems.mtdItemDoor.name = "mtSensibleDoor";
 		MTDItems.mtdItemSensibleDoor.setID(Integer.parseInt(configuration.get(
 				Configuration.CATEGORY_ITEM,
 				"mtDoorSensibleItem",
-				Item.doorWood.shiftedIndex).value));
+				Item.doorWood.itemID).value));
 		MTDItems.mtdItemSensibleDoor.name = "Multi-Textured Sensible Door";
 		sensibleDoors();
 		nonSensibleDoors();

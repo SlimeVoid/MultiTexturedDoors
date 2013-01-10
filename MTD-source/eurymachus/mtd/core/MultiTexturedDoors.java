@@ -15,7 +15,7 @@ import eurymachus.mtd.network.MTDConnection;
 @Mod(
 		modid = "MultiTexturedDoors",
 		name = "Multi-Textured Doors",
-		dependencies = "after:EurysCore",
+		dependencies = "after:SlimevoidLib",
 		version = "2.0.0.0")
 @NetworkMod(
 		clientSideRequired = true,
