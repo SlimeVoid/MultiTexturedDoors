@@ -2,21 +2,20 @@ package eurymachus.mtd.items;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemDoor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 import eurymachus.mtd.core.MTDBlocks;
 import eurymachus.mtd.core.MTDInit;
 import eurymachus.mtd.core.MTDItemDoors;
 import eurymachus.mtd.core.MTDItemSensibleDoors;
 import eurymachus.mtd.core.MTDItems;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemDoor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
 
 public class ItemMTDoor extends ItemDoor {
 	private String[] doorNames;

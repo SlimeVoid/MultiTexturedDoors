@@ -2,18 +2,15 @@ package eurymachus.mtd.blocks;
 
 import java.util.Random;
 
-import slimevoid.lib.IContainer;
-
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.StepSound;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.EnumGameType;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import slimevoid.lib.IContainer;
 import eurymachus.mtd.core.MTDBlocks;
 import eurymachus.mtd.core.MTDCore;
 import eurymachus.mtd.core.MTDInit;
