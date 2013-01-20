@@ -2,19 +2,18 @@ package eurymachus.mtd.core;
 
 import java.io.File;
 
-import slimevoid.lib.ICommonProxy;
-import slimevoid.lib.ICore;
-import slimevoid.lib.core.BlockRemover;
-import slimevoid.lib.core.Core;
-import slimevoid.lib.core.SlimevoidCore;
-import slimevoid.lib.core.ItemRemover;
-import slimevoid.lib.core.RecipeRemover;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.Configuration;
+import slimevoid.lib.ICommonProxy;
+import slimevoid.lib.ICore;
+import slimevoid.lib.core.BlockRemover;
+import slimevoid.lib.core.Core;
+import slimevoid.lib.core.ItemRemover;
+import slimevoid.lib.core.RecipeRemover;
+import slimevoid.lib.core.SlimevoidCore;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
 
 public class MTDInit {

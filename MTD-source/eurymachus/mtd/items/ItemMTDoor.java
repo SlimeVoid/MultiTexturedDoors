@@ -2,12 +2,6 @@ package eurymachus.mtd.items;
 
 import java.util.List;
 
-import eurymachus.mtd.core.MTDBlocks;
-import eurymachus.mtd.core.MTDInit;
-import eurymachus.mtd.core.MTDItemDoors;
-import eurymachus.mtd.core.MTDItemSensibleDoors;
-import eurymachus.mtd.core.MTDItems;
-import eurymachus.mtd.tileentities.TileEntityMTDoor;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import eurymachus.mtd.core.MTDBlocks;
+import eurymachus.mtd.core.MTDInit;
+import eurymachus.mtd.core.MTDItemDoors;
+import eurymachus.mtd.core.MTDItemSensibleDoors;
+import eurymachus.mtd.core.MTDItems;
+import eurymachus.mtd.tileentities.TileEntityMTDoor;
 
 public class ItemMTDoor extends ItemDoor {
 	private String[] doorNames;
@@ -183,6 +183,7 @@ public class ItemMTDoor extends ItemDoor {
 		return MTDInit.MTD.getItemSheet();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
     public void getSubItems(int itemID, CreativeTabs creativeTabs, List list) {
 		if (itemID == MTDItems.mtdItemDoor.getID()) {
