@@ -1,16 +1,17 @@
 package eurymachus.mtd.network.packets;
 
-import slimevoid.lib.network.PacketTileEntityMT;
+import slimevoidlib.network.PacketTileEntityMT;
 import eurymachus.mtd.core.MTDInit;
+import eurymachus.mtd.core.lib.CoreLib;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
 
 public class PacketUpdateMTDoor extends PacketTileEntityMT {
 	public PacketUpdateMTDoor() {
-		super(MTDInit.MTD.getModChannel());
+		super(CoreLib.MOD_CHANNEL);
 	}
 
 	public PacketUpdateMTDoor(TileEntityMTDoor tileentitymtdoor) {
-		super(MTDInit.MTD.getModChannel(), tileentitymtdoor);
+		super(CoreLib.MOD_CHANNEL, tileentitymtdoor);
 		this.payload = tileentitymtdoor.getPacketPayload();
 	}
 

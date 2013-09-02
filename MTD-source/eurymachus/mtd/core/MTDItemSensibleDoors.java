@@ -14,7 +14,7 @@ public enum MTDItemSensibleDoors {
 	public ItemStack me;
 	public int stackID;
 	public String name;
-	private int textureIndex;
+	private String textureLocation;
 	private float hardness;
 
 	public static ItemStack getStack(int itemDamage) {
@@ -26,17 +26,17 @@ public enum MTDItemSensibleDoors {
 		return null;
 	}
 
-	public static int getTexture(int itemDamage) {
+	public static String getTexture(int itemDamage) {
 		for (MTDItemSensibleDoors itemstack : MTDItemSensibleDoors.values()) {
 			if (itemstack != null && itemstack.stackID == itemDamage) {
-				return itemstack.textureIndex;
+				return itemstack.textureLocation;
 			}
 		}
-		return -1;
+		return null;
 	}
 
-	public void setTextureIndex(int textureIndex) {
-		this.textureIndex = textureIndex;
+	public void setTextureIndex(String textureLocation) {
+		this.textureLocation = textureLocation;
 	}
 
 	public void setBlockHardness(float hardness) {

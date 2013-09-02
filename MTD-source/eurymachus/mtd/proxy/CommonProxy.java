@@ -2,17 +2,21 @@ package eurymachus.mtd.proxy;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.File;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
+import net.minecraft.network.NetLoginHandler;
 import net.minecraft.network.packet.NetHandler;
 import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.network.packet.Packet250CustomPayload;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import slimevoid.lib.ICommonProxy;
-import slimevoid.lib.IPacketHandling;
-import slimevoid.lib.network.PacketIds;
+import slimevoidlib.ICommonProxy;
+import slimevoidlib.IPacketHandling;
+import slimevoidlib.core.SlimevoidLib;
+import slimevoidlib.network.PacketIds;
 import cpw.mods.fml.common.network.Player;
 import eurymachus.mtd.core.MTDInit;
 import eurymachus.mtd.network.ServerPacketHandler;
@@ -28,11 +32,7 @@ public class CommonProxy implements ICommonProxy {
 	public void registerTileEntitySpecialRenderer(Class<? extends TileEntity> clazz) {
 
 	}
-
-	@Override
-	public void displayTileEntityGui(EntityPlayer entityplayer, TileEntity tileentity) {
-	}
-
+	
 	@Override
 	public String getMinecraftDir() {
 		return "./";
@@ -48,28 +48,6 @@ public class CommonProxy implements ICommonProxy {
 		return null;
 	}
 
-	public int getMouseOver() {
-		return 0;
-	}
-
-	public int getBelowPlayer(EntityPlayer player) {
-		return 0;
-	}
-
-	public int getAtPlayer(EntityPlayer player) {
-		return 0;
-	}
-
-	@Override
-	public int getBlockTextureFromMetadata(int i) {
-		return 0;
-	}
-
-	@Override
-	public int getBlockTextureFromSideAndMetadata(int side, int meta) {
-		return getBlockTextureFromMetadata(meta);
-	}
-
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(
@@ -82,7 +60,7 @@ public class CommonProxy implements ICommonProxy {
 			case PacketIds.TILE:
 				PacketUpdateMTDoor packetDoor = new PacketUpdateMTDoor();
 				packetDoor.readData(data);
-				MTDInit.MTD.getPacketHandler().handleTileEntityPacket(
+				this.getPacketHandler().handleTileEntityPacket(
 						packetDoor,
 						entityplayer,
 						world);
@@ -99,29 +77,62 @@ public class CommonProxy implements ICommonProxy {
 	}
 
 	@Override
-	public World getWorld() {
-		return null;
-	}
-
-	@Override
-	public World getWorld(NetHandler handler) {
-		return null;
-	}
-
-	@Override
-	public EntityPlayer getPlayer() {
-		return null;
-	}
-
-	@Override
-	public void login(NetHandler handler, INetworkManager manager, Packet1Login login) {
-	}
-
-	@Override
 	public void registerTickHandler() {
 	}
 
 	@Override
 	public void preInit() {
+	}
+
+	@Override
+	public void registerConfigurationProperties(File configFile) {
+		// TODO :: Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isClient(World world) {
+		return SlimevoidLib.proxy.isClient(world);
+	}
+
+	@Override
+	public void playerLoggedIn(Player player, NetHandler netHandler,
+			INetworkManager manager) {
+		// TODO :: Auto-generated method stub
+		
+	}
+
+	@Override
+	public String connectionReceived(NetLoginHandler netHandler,
+			INetworkManager manager) {
+		// TODO :: Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void connectionOpened(NetHandler netClientHandler, String server,
+			int port, INetworkManager manager) {
+		// TODO :: Auto-generated method stub
+		
+	}
+
+	@Override
+	public void connectionOpened(NetHandler netClientHandler,
+			MinecraftServer server, INetworkManager manager) {
+		// TODO :: Auto-generated method stub
+		
+	}
+
+	@Override
+	public void connectionClosed(INetworkManager manager) {
+		// TODO :: Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clientLoggedIn(NetHandler clientHandler,
+			INetworkManager manager, Packet1Login login) {
+		// TODO :: Auto-generated method stub
+		
 	}
 }

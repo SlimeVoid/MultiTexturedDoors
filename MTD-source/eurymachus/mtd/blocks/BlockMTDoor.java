@@ -5,12 +5,15 @@ import java.util.Random;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.StepSound;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.IconFlipped;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import slimevoid.lib.IContainer;
+import slimevoidlib.IContainer;
 import eurymachus.mtd.core.MTDBlocks;
 import eurymachus.mtd.core.MTDCore;
 import eurymachus.mtd.core.MTDInit;
@@ -19,13 +22,14 @@ import eurymachus.mtd.core.MTDItemSensibleDoors;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
 
 public class BlockMTDoor extends BlockDoor implements IContainer {
+	private Icon[][] iconListUpper;
+	private Icon[][] iconListLower;
 	Class mtDoorEntityClass;
 
 	public BlockMTDoor(int par1, Class doorClass, float hardness, StepSound sound, boolean disableStats, boolean requiresSelfNotify, String blockName, Material material) {
 		super(par1, material);
-		this.setBlockName(blockName);
+		this.setUnlocalizedName(blockName);
 		this.isBlockContainer = true;
-		this.blockIndexInTexture = 1;
 		mtDoorEntityClass = doorClass;
 		setHardness(hardness);
 		setStepSound(sound);
@@ -33,8 +37,112 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 			disableStats();
 		}
 		if (requiresSelfNotify) {
-			setRequiresSelfNotify();
+			//setRequiresSelfNotify();
 		}
+	}
+	
+	@Override
+	public void registerIcons(IconRegister iconRegister) {
+		if (this.blockID == MTDBlocks.mtDoor.id) {
+			this.iconListUpper = new Icon[MTDItemDoors.values().length][2];
+			for (int i = 0; i < iconListUpper.length; i++) {
+				this.iconListUpper[i][0] = iconRegister.registerIcon(MTDItemDoors.getTexture(i) + "_upper");
+			}
+			for (int i = 0; i < iconListUpper.length; i++) {
+				this.iconListUpper[i][1] = new IconFlipped(this.iconListUpper[i][0], true, false);
+			}
+			this.iconListLower = new Icon[MTDItemDoors.values().length][2];
+			for (int i = 0; i < iconListLower.length; i++) {
+				this.iconListLower[i][0] = iconRegister.registerIcon(MTDItemDoors.getTexture(i) + "_lower");
+			}
+			for (int i = 0; i < iconListLower.length; i++) {
+				this.iconListLower[i][1] = new IconFlipped(this.iconListLower[i][0], true, false);
+			}
+		} else {
+			this.iconListUpper = new Icon[MTDItemSensibleDoors.values().length][2];
+			for (int i = 0; i < iconListUpper.length; i++) {
+				this.iconListUpper[i][0] = iconRegister.registerIcon(MTDItemSensibleDoors.getTexture(i) + "_upper");
+			}
+			for (int i = 0; i < iconListUpper.length; i++) {
+				this.iconListUpper[i][1] = new IconFlipped(this.iconListUpper[i][0], true, false);
+			}
+			this.iconListLower = new Icon[MTDItemSensibleDoors.values().length][2];
+			for (int i = 0; i < iconListLower.length; i++) {
+				this.iconListLower[i][0] = iconRegister.registerIcon(MTDItemSensibleDoors.getTexture(i) + "_lower");
+			}
+			for (int i = 0; i < iconListLower.length; i++) {
+				this.iconListLower[i][1] = new IconFlipped(this.iconListLower[i][0], true, false);
+			}
+		}
+	}
+
+	@Override
+	public Icon getBlockTexture(IBlockAccess blockaccess, int x, int y, int z, int side) {
+		if (side != 1 && side != 0)
+        {
+            int fullMeta = this.getFullMetadata(blockaccess, x, y, z);
+            int doorSide = fullMeta & 3;
+            boolean isOpen = (fullMeta & 4) != 0;
+            boolean isFront = false;
+            boolean isUpper = (fullMeta & 8) != 0;
+
+            if (isOpen)
+            {
+                if (doorSide == 0 && side == 2)
+                {
+                    isFront = !isFront;
+                }
+                else if (doorSide == 1 && side == 5)
+                {
+                    isFront = !isFront;
+                }
+                else if (doorSide == 2 && side == 3)
+                {
+                    isFront = !isFront;
+                }
+                else if (doorSide == 3 && side == 4)
+                {
+                    isFront = !isFront;
+                }
+            }
+            else
+            {
+                if (doorSide == 0 && side == 5)
+                {
+                    isFront = !isFront;
+                }
+                else if (doorSide == 1 && side == 3)
+                {
+                    isFront = !isFront;
+                }
+                else if (doorSide == 2 && side == 4)
+                {
+                    isFront = !isFront;
+                }
+                else if (doorSide == 3 && side == 2)
+                {
+                    isFront = !isFront;
+                }
+
+                if ((fullMeta & 16) != 0)
+                {
+                    isFront = !isFront;
+                }
+            }
+
+            return isUpper
+            		? this.iconListUpper[MTDInit.getDamageValue(blockaccess, x, y, z)][isFront ? 1 : 0]
+            		: this.iconListLower[MTDInit.getDamageValue(blockaccess, x, y, z)][isFront ? 1 : 0];
+        }
+        else
+        {
+            return this.iconListUpper[0][0];
+        }
+	}
+
+	@Override
+	public Icon getIcon(int side, int metadata) {
+		return null;
 	}
 	
 	@Override
@@ -96,73 +204,6 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 	}
 
 	/**
-	 * Retrieves the block texture to use based on the display side. Args:
-	 * iBlockAccess, x, y, z, side
-	 */
-	@Override
-	public int getBlockTexture(IBlockAccess blockaccess, int x, int y, int z, int side) {
-		int index = this.blockIndexInTexture;
-		int staticIndex = index;
-		if (blockaccess.getBlockId(x, y, z) == MTDBlocks.mtDoor.id) {
-			index = MTDItemDoors.getTexture(MTDInit.getDamageValue(
-					blockaccess,
-					x,
-					y,
-					z));
-			staticIndex = index;
-		} else {
-			index = MTDItemSensibleDoors.getTexture(MTDInit.getDamageValue(
-					blockaccess,
-					x,
-					y,
-					z));
-			staticIndex = index;
-		}
-		if (side != 0 && side != 1) {
-			int fullMeta = this.getFullMetadata(blockaccess, x, y, z);
-			if ((fullMeta & 8) != 0) {
-				index -= 16;
-			}
-
-			int doorSide = fullMeta & 3;
-			boolean state = (fullMeta & 4) != 0;
-
-			if (!state) {
-				if (doorSide == 0 && side == 5) {
-					index = -index;
-				} else if (doorSide == 1 && side == 3) {
-					index = -index;
-				} else if (doorSide == 2 && side == 4) {
-					index = -index;
-				} else if (doorSide == 3 && side == 2) {
-					index = -index;
-				}
-
-				if ((fullMeta & 16) != 0) {
-					index = -index;
-				}
-			} else if (doorSide == 0 && side == 2) {
-				index = -index;
-			} else if (doorSide == 1 && side == 5) {
-				index = -index;
-			} else if (doorSide == 2 && side == 3) {
-				index = -index;
-			} else if (doorSide == 3 && side == 4) {
-				index = -index;
-			}
-
-			return index;
-		} else {
-			return staticIndex;
-		}
-	}
-
-	@Override
-	public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
-		return MTDInit.MTD.getProxy().getBlockTextureFromMetadata(metadata);
-	}
-
-	/**
 	 * The type of render function that is called for this block
 	 */
 	@Override
@@ -173,10 +214,5 @@ public class BlockMTDoor extends BlockDoor implements IContainer {
 	@Override
 	public int quantityDropped(Random random) {
 		return 0;
-	}
-
-	@Override
-	public String getTextureFile() {
-		return MTDInit.MTD.getBlockSheet();
 	}
 }

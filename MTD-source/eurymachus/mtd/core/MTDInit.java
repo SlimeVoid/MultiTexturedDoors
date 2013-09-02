@@ -7,28 +7,24 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.Configuration;
-import slimevoid.lib.ICommonProxy;
-import slimevoid.lib.ICore;
-import slimevoid.lib.core.Core;
-import slimevoid.lib.core.SlimevoidCore;
-import slimevoid.lib.util.BlockRemover;
-import slimevoid.lib.util.ItemRemover;
-import slimevoid.lib.util.RecipeRemover;
+import slimevoidlib.ICommonProxy;
+import slimevoidlib.core.SlimevoidCore;
+import slimevoidlib.core.SlimevoidLib;
+import slimevoidlib.util.BlockRemover;
+import slimevoidlib.util.ItemRemover;
+import slimevoidlib.util.RecipeRemover;
+import eurymachus.mtd.core.lib.CoreLib;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
 
 public class MTDInit {
-	public static ICore MTD;
 	private static boolean initialized = false;
 
 	public static void initialize(ICommonProxy proxy) {
 		if (initialized)
 			return;
 		initialized = true;
-		MTD = new Core(proxy);
-		MTD.setModName("MultiTexturedDoors");
-		MTD.setModChannel("MTD");
 		MTDCore.configFile = new File(
-				MTDInit.MTD.getProxy().getMinecraftDir(),
+				SlimevoidLib.proxy.getMinecraftDir(),
 					"config/MultiTexturedDoors.cfg");
 		MTDCore.configuration = new Configuration(MTDCore.configFile);
 		load();
@@ -36,24 +32,24 @@ public class MTDInit {
 
 	public static void load() {
 		MTDCore.configurationProperties();
-		SlimevoidCore.console(MTD.getModName(), "Removing Recipes...");
+		SlimevoidCore.console(CoreLib.MOD_ID, "Removing Recipes...");
 		RecipeRemover.registerItemRecipeToRemove(Block.doorWood);
-		RecipeRemover.registerItemRecipeToRemove(Block.doorSteel);
+		RecipeRemover.registerItemRecipeToRemove(Block.doorIron);
 		RecipeRemover.removeCrafting();
-		SlimevoidCore.console(MTD.getModName(), "Removing Blocks...");
+		SlimevoidCore.console(CoreLib.MOD_ID, "Removing Blocks...");
 		BlockRemover.removeVanillaBlock(Block.doorWood);
-		BlockRemover.removeVanillaBlock(Block.doorSteel);
-		SlimevoidCore.console(MTD.getModName(), "Removing Items...");
+		BlockRemover.removeVanillaBlock(Block.doorIron);
+		SlimevoidCore.console(CoreLib.MOD_ID, "Removing Items...");
 		ItemRemover.removeVanillaItem(Item.doorWood);
-		ItemRemover.removeVanillaItem(Item.doorSteel);
-		SlimevoidCore.console(MTD.getModName(), "Registering items...");
+		ItemRemover.removeVanillaItem(Item.doorIron);
+		SlimevoidCore.console(CoreLib.MOD_ID, "Registering items...");
 		MTDCore.addItems();
-		SlimevoidCore.console(MTD.getModName(), "Registering blocks...");
+		SlimevoidCore.console(CoreLib.MOD_ID, "Registering blocks...");
 		MTDCore.registerBlocks();
-		MTD.getProxy().registerRenderInformation();
-		SlimevoidCore.console(MTD.getModName(), "Naming items...");
+		MultiTexturedDoors.proxy.registerRenderInformation();
+		SlimevoidCore.console(CoreLib.MOD_ID, "Naming items...");
 		MTDCore.addItemNames();
-		SlimevoidCore.console(MTD.getModName(), "Registering recipes...");
+		SlimevoidCore.console(CoreLib.MOD_ID, "Registering recipes...");
 		MTDCore.addRecipes();
 	}
 
@@ -65,6 +61,6 @@ public class MTDInit {
 				return tileentitymtdoor.getTextureValue();
 			}
 		}
-		return 1000;
+		return 0;
 	}
 }

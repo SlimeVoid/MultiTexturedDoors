@@ -3,11 +3,13 @@ package eurymachus.mtd.items;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import eurymachus.mtd.core.MTDBlocks;
@@ -20,6 +22,22 @@ import eurymachus.mtd.tileentities.TileEntityMTDoor;
 public class ItemMTDoor extends ItemDoor {
 	private String[] doorNames;
 	private final Block blockRef;
+	private Icon[] iconList;
+	
+	@Override
+	public void registerIcons(IconRegister iconRegister) {
+		if (this.blockRef.blockID == MTDBlocks.mtDoor.id) {
+			iconList = new Icon[MTDItemDoors.values().length];
+			for (int i = 0; i < iconList.length; i++) {
+				iconList[i] = iconRegister.registerIcon(MTDItemDoors.getTexture(i));
+			}
+		} else {
+			iconList = new Icon[MTDItemSensibleDoors.values().length];
+			for (int i = 0; i < iconList.length; i++) {
+				iconList[i] = iconRegister.registerIcon(MTDItemSensibleDoors.getTexture(i));
+			}
+		}
+	}
 
 	public ItemMTDoor(int i, Block blockRef) {
 		super(i, blockRef.blockMaterial);
@@ -36,9 +54,9 @@ public class ItemMTDoor extends ItemDoor {
 	}
 
 	@Override
-	public String getItemNameIS(ItemStack itemstack) {
+	public String getUnlocalizedName(ItemStack itemstack) {
 		return (new StringBuilder())
-				.append(super.getItemName())
+				.append(super.getUnlocalizedName())
 					.append(".")
 					.append(doorNames[itemstack.getItemDamage()])
 					.toString();
@@ -61,12 +79,8 @@ public class ItemMTDoor extends ItemDoor {
 	 * Gets an icon index based on an item's damage value
 	 */
 	@Override
-	public int getIconFromDamage(int damage) {
-		if (this.blockRef.blockID == MTDBlocks.mtDoor.id) {
-			return damage;
-		} else {
-			return damage + 32;
-		}
+	public Icon getIconFromDamage(int damage) {
+		return this.iconList[damage];
 	}
 
 	@Override
@@ -135,13 +149,13 @@ public class ItemMTDoor extends ItemDoor {
 			var12 = true;
 		}
 
-		par0World.editingBlocks = true;
-		par0World.setBlockAndMetadataWithNotify(
+		par0World.setBlock(
 				par1,
 				par2,
 				par3,
 				par5Block.blockID,
-				par4);
+				par4,
+				0x3);
 		TileEntity tileentity = par0World.getBlockTileEntity(par1, par2, par3);
 		if (tileentity != null && tileentity instanceof TileEntityMTDoor) {
 			TileEntityMTDoor tileentitymtdoor = (TileEntityMTDoor) tileentity;
@@ -149,12 +163,13 @@ public class ItemMTDoor extends ItemDoor {
 			tileentitymtdoor.setDoorPiece(0);
 			tileentitymtdoor.onInventoryChanged();
 		}
-		par0World.setBlockAndMetadataWithNotify(
+		par0World.setBlock(
 				par1,
 				par2 + 1,
 				par3,
 				par5Block.blockID,
-				8 | (var12 ? 1 : 0));
+				8 | (var12 ? 1 : 0),
+				0x3);
 		TileEntity tileentity1 = par0World.getBlockTileEntity(
 				par1,
 				par2 + 1,
@@ -165,7 +180,6 @@ public class ItemMTDoor extends ItemDoor {
 			tileentitymtdoor1.setDoorPiece(1);
 			tileentitymtdoor1.onInventoryChanged();
 		}
-		par0World.editingBlocks = false;
 		par0World.notifyBlocksOfNeighborChange(
 				par1,
 				par2,
@@ -176,11 +190,6 @@ public class ItemMTDoor extends ItemDoor {
 				par2 + 1,
 				par3,
 				par5Block.blockID);
-	}
-
-	@Override
-	public String getTextureFile() {
-		return MTDInit.MTD.getItemSheet();
 	}
 	
 	@SuppressWarnings("unchecked")

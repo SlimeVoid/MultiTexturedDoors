@@ -9,9 +9,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
-import slimevoid.lib.ICommonProxy;
+import slimevoidlib.ICommonProxy;
 import cpw.mods.fml.common.registry.GameRegistry;
 import eurymachus.mtd.blocks.BlockMTDoor;
+import eurymachus.mtd.core.lib.TextureLib;
 import eurymachus.mtd.items.ItemMTDoor;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
 
@@ -48,9 +49,9 @@ public class MTDCore {
 					"mtSensibleDoor",
 					Material.rock));
 		MTDItems.mtdItemDoor.me = (new ItemMTDoor(
-				MTDItems.mtdItemDoor.offsetID(), MTDBlocks.mtDoor.me)).setItemName("mtDoor");
+				MTDItems.mtdItemDoor.offsetID(), MTDBlocks.mtDoor.me)).setUnlocalizedName("mtDoor");
 		MTDItems.mtdItemSensibleDoor.me = (new ItemMTDoor(
-				MTDItems.mtdItemSensibleDoor.offsetID(), MTDBlocks.mtSensibleDoor.me)).setItemName("mtSensibleDoor");
+				MTDItems.mtdItemSensibleDoor.offsetID(), MTDBlocks.mtSensibleDoor.me)).setUnlocalizedName("mtSensibleDoor");
 		GameRegistry.registerTileEntity(TileEntityMTDoor.class, "mtDoor");
 		for (MTDItemDoors door : MTDItemDoors.values()) {
 			door.me = new ItemStack(MTDItems.mtdItemDoor.me, 1, door.stackID);
@@ -259,25 +260,25 @@ public class MTDCore {
 
 	public static int configurationProperties() {
 		configuration.load();
-		MTDBlocks.mtDoor.id = Integer.parseInt(configuration.get(
+		MTDBlocks.mtDoor.id = configuration.get(
 				Configuration.CATEGORY_BLOCK,
 				"mtDoor",
-				Block.doorSteel.blockID).value);
+				Block.doorIron.blockID).getInt();
 		MTDBlocks.mtDoor.name = "mtDoor";
-		MTDBlocks.mtSensibleDoor.id = Integer.parseInt(configuration.get(
+		MTDBlocks.mtSensibleDoor.id = configuration.get(
 				Configuration.CATEGORY_BLOCK,
 				"mtSensibleDoor",
-				Block.doorWood.blockID).value);
+				Block.doorWood.blockID).getInt();
 		MTDBlocks.mtSensibleDoor.name = "Multi-Textured Sensible Door";
-		MTDItems.mtdItemDoor.setID(Integer.parseInt(configuration.get(
+		MTDItems.mtdItemDoor.setID(configuration.get(
 				Configuration.CATEGORY_ITEM,
 				"mtDoorItem",
-				Item.doorSteel.itemID).value));
+				Item.doorIron.itemID).getInt());
 		MTDItems.mtdItemDoor.name = "mtSensibleDoor";
-		MTDItems.mtdItemSensibleDoor.setID(Integer.parseInt(configuration.get(
+		MTDItems.mtdItemSensibleDoor.setID(configuration.get(
 				Configuration.CATEGORY_ITEM,
 				"mtDoorSensibleItem",
-				Item.doorWood.itemID).value));
+				Item.doorWood.itemID).getInt());
 		MTDItems.mtdItemSensibleDoor.name = "Multi-Textured Sensible Door";
 		sensibleDoors();
 		nonSensibleDoors();
@@ -288,52 +289,52 @@ public class MTDCore {
 	private static void nonSensibleDoors() {
 		MTDItemDoors.ironDoor.name = "Iron Door";
 		MTDItemDoors.ironDoor.stackID = 0;
-		MTDItemDoors.ironDoor.setTextureIndex(49);
+		MTDItemDoors.ironDoor.setTextureIndex(TextureLib.DOOR_IRON);
 		MTDItemDoors.ironDoor.setBlockHardness(0.8F);
 		MTDItemDoors.goldDoor.name = "Gold-Plated Door";
 		MTDItemDoors.goldDoor.stackID = 1;
-		MTDItemDoors.goldDoor.setTextureIndex(50);
+		MTDItemDoors.goldDoor.setTextureIndex(TextureLib.DOOR_GOLD);
 		MTDItemDoors.goldDoor.setBlockHardness(0.8F);
 		MTDItemDoors.diamondDoor.name = "Diamond-Lathered Door";
 		MTDItemDoors.diamondDoor.stackID = 2;
-		MTDItemDoors.diamondDoor.setTextureIndex(51);
+		MTDItemDoors.diamondDoor.setTextureIndex(TextureLib.DOOR_DIAMOND);
 		MTDItemDoors.diamondDoor.setBlockHardness(0.5F);
 	}
 
 	private static void sensibleDoors() {
 		MTDItemSensibleDoors.oakWoodDoor.name = "Oak Wood Door";
 		MTDItemSensibleDoors.oakWoodDoor.stackID = 0;
-		MTDItemSensibleDoors.oakWoodDoor.setTextureIndex(17);
+		MTDItemSensibleDoors.oakWoodDoor.setTextureIndex(TextureLib.DOOR_WOOD_OAK);
 		MTDItemSensibleDoors.oakWoodDoor.setBlockHardness(0.4F);
 
 		MTDItemSensibleDoors.spruceWoodDoor.name = "Spruce Wood Door";
 		MTDItemSensibleDoors.spruceWoodDoor.stackID = 1;
-		MTDItemSensibleDoors.spruceWoodDoor.setTextureIndex(18);
+		MTDItemSensibleDoors.spruceWoodDoor.setTextureIndex(TextureLib.DOOR_WOOD_SPRUCE);
 		MTDItemSensibleDoors.spruceWoodDoor.setBlockHardness(0.4F);
 
 		MTDItemSensibleDoors.birchWoodDoor.name = "Birch Wood Door";
 		MTDItemSensibleDoors.birchWoodDoor.stackID = 2;
-		MTDItemSensibleDoors.birchWoodDoor.setTextureIndex(19);
+		MTDItemSensibleDoors.birchWoodDoor.setTextureIndex(TextureLib.DOOR_WOOD_BIRCH);
 		MTDItemSensibleDoors.birchWoodDoor.setBlockHardness(0.4F);
 
 		MTDItemSensibleDoors.jungleWoodDoor.name = "Jungle Wood Door";
 		MTDItemSensibleDoors.jungleWoodDoor.stackID = 3;
-		MTDItemSensibleDoors.jungleWoodDoor.setTextureIndex(20);
+		MTDItemSensibleDoors.jungleWoodDoor.setTextureIndex(TextureLib.DOOR_WOOD_JUNGLE);
 		MTDItemSensibleDoors.jungleWoodDoor.setBlockHardness(0.4F);
 
 		MTDItemSensibleDoors.smoothStoneDoor.name = "Smooth Stone Door";
 		MTDItemSensibleDoors.smoothStoneDoor.stackID = 4;
-		MTDItemSensibleDoors.smoothStoneDoor.setTextureIndex(21);
+		MTDItemSensibleDoors.smoothStoneDoor.setTextureIndex(TextureLib.DOOR_STONE_SMOOTH);
 		MTDItemSensibleDoors.smoothStoneDoor.setBlockHardness(0.4F);
 
 		MTDItemSensibleDoors.polishedStoneDoor.name = "Polished Stone Door";
 		MTDItemSensibleDoors.polishedStoneDoor.stackID = 5;
-		MTDItemSensibleDoors.polishedStoneDoor.setTextureIndex(22);
+		MTDItemSensibleDoors.polishedStoneDoor.setTextureIndex(TextureLib.DOOR_STONE_POLISHED);
 		MTDItemSensibleDoors.polishedStoneDoor.setBlockHardness(0.6F);
 
 		MTDItemSensibleDoors.cobbleStoneDoor.name = "Cobblestone Door";
 		MTDItemSensibleDoors.cobbleStoneDoor.stackID = 6;
-		MTDItemSensibleDoors.cobbleStoneDoor.setTextureIndex(23);
+		MTDItemSensibleDoors.cobbleStoneDoor.setTextureIndex(TextureLib.DOOR_STONE_COBBLE);
 		MTDItemSensibleDoors.cobbleStoneDoor.setBlockHardness(0.6F);
 	}
 }

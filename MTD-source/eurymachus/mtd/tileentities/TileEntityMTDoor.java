@@ -3,9 +3,9 @@ package eurymachus.mtd.tileentities;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.world.World;
-import slimevoid.lib.network.PacketPayload;
-import slimevoid.lib.network.PacketUpdate;
-import slimevoid.lib.tileentity.TileEntityMT;
+import slimevoidlib.network.PacketPayload;
+import slimevoidlib.network.PacketUpdate;
+import slimevoidlib.tileentity.TileEntityMT;
 import eurymachus.mtd.network.packets.PacketUpdateMTDoor;
 
 public class TileEntityMTDoor extends TileEntityMT {
