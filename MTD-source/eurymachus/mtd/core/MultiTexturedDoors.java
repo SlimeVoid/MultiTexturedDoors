@@ -8,23 +8,24 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import eurymachus.mtd.core.lib.CoreLib;
 import eurymachus.mtd.proxy.CommonProxy;
 
 @Mod(
-		modid = "MultiTexturedDoors",
-		name = "Multi-Textured Doors",
-		dependencies = "after:SlimevoidLib",
-		version = "2.0.0.1")
+		modid = CoreLib.MOD_ID,
+		name = CoreLib.MOD_NAME,
+		dependencies = CoreLib.MOD_DEPENDENCIES,
+		version = CoreLib.MOD_VERSION)
 @NetworkMod(
 		clientSideRequired = true,
 		serverSideRequired = false,
-		channels = { "MTD" },
+		channels = { CoreLib.MOD_CHANNEL },
 		packetHandler = CommonProxy.class,
 		connectionHandler = CommonProxy.class)
 public class MultiTexturedDoors {
 	@SidedProxy(
-			clientSide = "eurymachus.mtd.client.proxy.ClientProxy",
-			serverSide = "eurymachus.mtd.proxy.CommonProxy")
+			clientSide = CoreLib.CLIENT_PROXY,
+			serverSide = CoreLib.COMMON_PROXY)
 	public static ICommonProxy proxy;
 
 	@EventHandler
