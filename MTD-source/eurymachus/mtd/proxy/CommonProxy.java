@@ -18,7 +18,6 @@ import slimevoidlib.IPacketHandling;
 import slimevoidlib.core.SlimevoidLib;
 import slimevoidlib.network.PacketIds;
 import cpw.mods.fml.common.network.Player;
-import eurymachus.mtd.core.MTDInit;
 import eurymachus.mtd.network.ServerPacketHandler;
 import eurymachus.mtd.network.packets.PacketUpdateMTDoor;
 

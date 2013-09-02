@@ -13,7 +13,6 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import eurymachus.mtd.core.MTDBlocks;
-import eurymachus.mtd.core.MTDInit;
 import eurymachus.mtd.core.MTDItemDoors;
 import eurymachus.mtd.core.MTDItemSensibleDoors;
 import eurymachus.mtd.core.MTDItems;

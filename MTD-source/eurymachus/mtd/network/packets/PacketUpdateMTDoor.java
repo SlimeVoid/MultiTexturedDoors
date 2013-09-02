@@ -1,7 +1,6 @@
 package eurymachus.mtd.network.packets;
 
 import slimevoidlib.network.PacketTileEntityMT;
-import eurymachus.mtd.core.MTDInit;
 import eurymachus.mtd.core.lib.CoreLib;
 import eurymachus.mtd.tileentities.TileEntityMTDoor;
 
